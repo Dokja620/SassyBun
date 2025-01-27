@@ -2,6 +2,10 @@
   "name": "sassybun",
   "module": "src/cli.ts",
   "type": "module",
+  "scripts": {
+    "build": "bun run tsc",
+    "start": "bun run build && bun run ./dist/cli.js"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -9,6 +13,11 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "commander": "^13.1.0"
+    "chokidar": "^4.0.3",
+    "commander": "^13.1.0",
+    "sass": "^1.83.4"
+  },
+  "bin": {
+    "sassybun": "./bin/sassybun.js"
   }
 }

@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import initProject from "./commands/init";
-import compileSass from "./commands/compile";
 import watchSass from "./commands/watch";
+import compileSass from "./commands/compile";
 
 const program = new Command();
 
@@ -13,11 +13,11 @@ program
 program
   .command("compile")
   .description("Compile SCSS files")
-  .action(initProject);
+  .action(compileSass);
 
 program
   .command("watch")
   .description("Watch SCSS files for changes")
-  .action(initProject);
+  .action(watchSass);
 
-program.parse(process.agrv);
+program.parse(process.argv);
