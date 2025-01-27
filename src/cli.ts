@@ -1,6 +1,6 @@
 import { Command } from "commander";
 import { initProject } from "./commands/init";
-import { compileSass, startWatcher } from "./commands/compile";
+import { compileSass, startWatcher } from "./commands/compiler";
 const program = new Command();
 
 program
