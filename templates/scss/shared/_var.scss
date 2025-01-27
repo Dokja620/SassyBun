@@ -1,0 +1,25 @@
+// note: root = 16px
+// spacing
+$spacing: 1em;
+$spacing-xs: calc($spacing / 1.5);
+$spacing-md: $spacing * 1.5;
+$spacing-lg: $spacing * 1.75;
+$spacing-xl: $spacing * 2;
+$spacing-2xl: $spacing * 2.5;
+$spacing-xxl: $spacing * 3;
+
+// font size
+$font-size: 1rem;
+$font-size-md: $font-size * 1.5;
+$font-size-lg: $font-size * 1.75;
+$font-size-xl: $font-size * 2;
+$font-size-2xl: $font-size * 2.5;
+$font-size-xxl: $font-size * 3;
+
+// Breakpoints
+$breakpoint-2xl: 1536px;
+$breakpoint-xl: 1280px;
+$breakpoint-lg: 1024px;
+$breakpoint-md: 768px;
+$breakpoint-sm: 640px;
+$breakpoint-xs: 475px;
