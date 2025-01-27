@@ -1,8 +1,6 @@
 import { Command } from "commander";
 import { initProject } from "./commands/init";
-import watchSass from "./commands/watch";
-import compileSass from "./commands/compile";
-
+import { compileSass, startWatcher } from "./commands/compile";
 const program = new Command();
 
 program
@@ -14,12 +12,16 @@ program
 
 program
   .command("compile")
-  .description("Compile SCSS files")
-  .action(compileSass);
+  .description("Compile SCSS Files")
+  .action(async () => {
+    await compileSass();
+  });
 
 program
   .command("watch")
-  .description("Watch SCSS files for changes")
-  .action(watchSass);
+  .description("Watch SCSS Files")
+  .action(async () => {
+    await startWatcher();
+  });
 
 program.parse(process.argv);

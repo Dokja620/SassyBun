@@ -1,38 +1,38 @@
-import fs from "fs/promises";
-import path from "path";
+import { existsSync, mkdirSync, readdirSync, copyFileSync, statSync } from "fs";
+import { join } from "path";
 
-export async function initProject() {
-  const templateDir = path.join(import.meta.dir, "../../templates");
-  const targetDir = process.cwd();
+export function initProject(targetDir: string = "./") {
+  const templateDir = join(__dirname, "../../templates");
 
-  try {
-    console.log("Initializing project... Creating files and directories");
-
-    await copyDirectory(templateDir, targetDir);
-
-    console.log("Project initialized successfully!");
-  } catch (error) {
-    console.error("Failed to initialize project", error);
+  if (!existsSync(templateDir)) {
+    console.error("❌ Template directory not found!");
+    process.exit(1);
   }
-}
 
-async function copyDirectory(src: string, dest: string) {
-  try {
-    await fs.mkdir(dest, { recursive: true });
+  console.log(`🛠️  Initializing project in: ${targetDir}`);
 
-    const entries = await fs.readdir(src, { withFileTypes: true });
+  function copyRecursive(src: string, dest: string, level: number = 0) {
+    if (!existsSync(dest)) mkdirSync(dest, { recursive: true });
 
-    for (const entry of entries) {
-      const srcPath = path.join(src, entry.name);
-      const destPath = path.join(dest, entry.name);
+    const items = readdirSync(src);
 
-      if (entry.isDirectory()) {
-        await copyDirectory(srcPath, destPath);
-      } else {
-        await fs.copyFile(srcPath, destPath);
-      }
+    if (level === 1) {
+      console.log(`🗃️  Template files created : [ ${items.join("  ")} ]`);
     }
-  } catch (error) {
-    console.error("Error copying files :", error);
+
+    items.forEach((item) => {
+      const srcPath = join(src, item);
+      const destPath = join(dest, item);
+
+      if (statSync(srcPath).isDirectory()) {
+        copyRecursive(srcPath, destPath, level + 1);
+      } else {
+        copyFileSync(srcPath, destPath);
+      }
+    });
   }
+
+  copyRecursive(templateDir, targetDir);
+
+  console.log("🚀 Project initialized successfully!");
 }
