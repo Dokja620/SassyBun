@@ -7,14 +7,17 @@
     "start": "bun run build && bun run ./dist/cli.js"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/node": "^22.10.10"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.20",
     "chokidar": "^4.0.3",
     "commander": "^13.1.0",
+    "postcss": "^8.5.1",
     "sass": "^1.83.4"
   },
   "bin": {
