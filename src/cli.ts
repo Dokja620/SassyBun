@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import initProject from "./commands/init";
+import { initProject } from "./commands/init";
 import watchSass from "./commands/watch";
 import compileSass from "./commands/compile";
 
@@ -8,7 +8,9 @@ const program = new Command();
 program
   .command("init")
   .description("Initialize a new SASS project")
-  .action(initProject);
+  .action(async () => {
+    await initProject();
+  });
 
 program
   .command("compile")

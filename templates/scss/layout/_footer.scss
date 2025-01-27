@@ -1,0 +1,6 @@
+@use "../shared";
+
+footer {
+  padding: shared.$spacing-xs;
+  max-width: 100vw;
+}
