@@ -1,6 +1,6 @@
 {
   "name": "sassybun",
-  "module": "src/cli.js",
+  "module": "src/cli.ts",
   "type": "module",
   "devDependencies": {
     "@types/bun": "latest"
